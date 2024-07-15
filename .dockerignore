@@ -1,0 +1,11 @@
+.git/
+.env-sample
+.dockerignore
+.gitignore
+
+
+test/
+vendor/
+/var/cache/*
+/var/log/*
+/config/jwt/*.pem
