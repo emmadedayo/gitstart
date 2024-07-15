@@ -14,6 +14,6 @@ class UserRegistrationDTO
     public string $password;
 
     // Optional for Registration
-    #[Assert\NotBlank(groups: ['registration'])] // Only for registration
-    public string $name;
+    #[Assert\NotBlank(groups: ['registration'])]
+    public string $fullname;
 }

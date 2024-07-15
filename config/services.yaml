@@ -22,3 +22,20 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Service\DTOValidator:
+        class: App\Service\DTOValidator
+        arguments:
+            $validator: '@validator'
+        tags:
+            - { name: 'app.dto_validator' }
+
+    App\Controller\UserController:
+        arguments:
+            $dtoValidator: '@App\Service\DTOValidator'
+            $serializer: '@serializer'
+        tags:
+            - { name: 'controller.service_arguments' }
+
+    App\Event\ExceptionSubscriber:
+        tags:
+            - { name: 'kernel.event_subscriber' }

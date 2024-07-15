@@ -1,10 +1,10 @@
 <?php
 
-namespace App\EventListener;
+namespace App\Event;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 
-class AuthenticationSuccessListener
+class JwtSuccessListener
 {
     public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event): void
     {

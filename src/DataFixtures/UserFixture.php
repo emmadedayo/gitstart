@@ -16,10 +16,8 @@ class UserFixture extends Fixture
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setFullName('Gitstart Admin');
-        $user->setEmail('admin@gitstart.com');
-        $user->setRoles(['ROLE_ADMIN']);
-
+        $user->setFullName('Olufemi Adeninuola');
+        $user->setEmail('olufemi_adeninuola@example.com');
         $hashedPassword = $this->userPasswordHasher->hashPassword($user, 'password');
         $user->setPassword($hashedPassword);
 

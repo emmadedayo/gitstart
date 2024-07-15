@@ -23,17 +23,15 @@ class ProductService
         $this->paginator = $paginator;
     }
 
-    public function createProduct(ProductDTO $dto, $user): Product
+    public function createProduct(ProductDTO $dto): Product
     {
         $this->dtoValidator->validate($dto);
 
         $product = new Product();
         $product->setProductName($dto->productName);
         $product->setProductPrice($dto->productPrice);
-        $product->setProductionDescription($dto->productionDescription);
+        $product->setProductDescription($dto->productDescription);
         $product->setProductImage($dto->productImage);
-        $product->setUser($user);
-
         $this->entityManager->persist($product);
         $this->entityManager->flush();
 
@@ -58,7 +56,7 @@ class ProductService
 
         $product->setProductName($dto->productName);
         $product->setProductPrice($dto->productPrice);
-        $product->setProductionDescription($dto->productionDescription);
+        $product->setProductDescription($dto->productionDescription);
         $product->setProductImage($dto->productImage);
 
         $this->entityManager->flush();
@@ -85,11 +83,11 @@ class ProductService
         foreach ($pagination->getItems() as $product) {
             $products[] = [
                 'id' => $product->getId(),
-                'productName' => $product->getProductName(),
-                'productPrice' => $product->getProductPrice(),
-                'productionDescription' => $product->getProductionDescription(),
-                'productImage' => $product->getProductImage(),
-                'userId' => $product->getUser()->getId(),
+                'product_name' => $product->getProductName(),
+                'product_price' => $product->getProductPrice(),
+                'product_description' => $product->getProductDescription(),
+                'product_image' => $product->getProductImage(),
+                'created_at' => $product->getCreatedAt()->format('Y-m-d H:i:s'),
             ];
         }
 

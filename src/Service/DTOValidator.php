@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -23,8 +24,7 @@ class DTOValidator
             foreach ($violations as $violation) {
                 $message .= sprintf('Field %s: %s ', $violation->getPropertyPath(), $violation->getMessage());
             }
-
-            throw new BadRequestException($message);
+            throw new BadRequestException($message, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
 }

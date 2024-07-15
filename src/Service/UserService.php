@@ -28,7 +28,7 @@ class UserService
     {
         $this->throwIfUserAlreadyExists($dto->email);
         $user = new User();
-        $user->setName($dto->name);
+        $user->setFullname($dto->fullname);
         $user->setEmail($dto->email);
         $user->setPassword($this->passwordHasher->hashPassword($user, $dto->password));
 

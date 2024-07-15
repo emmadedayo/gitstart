@@ -4,21 +4,24 @@ services:
   web:
     build: .
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - .:/var/www/html
     networks:
       - symfony
 
-  db:
-    image: mysql:8.0.33
+  postgres:
+    image: postgres:latest
+    restart: always
     environment:
-      MYSQL_DATABASE: symfony
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: secret
+      POSTGRES_DB: product_db
+      POSTGRES_USER: username_db
+      POSTGRES_PASSWORD: password_symfony
+    ports:
+      - "5433:5432"
     networks:
       - symfony
 
 networks:
-    symfony:
+  symfony:
+    driver: bridge

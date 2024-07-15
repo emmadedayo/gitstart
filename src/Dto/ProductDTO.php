@@ -16,7 +16,7 @@ class ProductDTO
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 255)]
-    public ?string $productionDescription = null;
+    public ?string $productDescription = null;
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 255)]

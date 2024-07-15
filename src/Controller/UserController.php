@@ -14,6 +14,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[Route('/api')]
 class UserController extends AbstractController
 {
     private DTOValidator $dtoValidator;
@@ -37,9 +38,9 @@ class UserController extends AbstractController
 
         return new JsonResponse(
             [
-            'message' => 'User registered successfully',
-            'is_success' => false,
-            'status_code' => JsonResponse::HTTP_CREATED],
+                'message' => 'User registered successfully',
+                'is_success' => false,
+                'status_code' => JsonResponse::HTTP_CREATED],
             JsonResponse::HTTP_CREATED
         );
     }
@@ -56,9 +57,9 @@ class UserController extends AbstractController
         if (!$user || !$passwordHasher->isPasswordValid($user, $dto->password)) {
             return new JsonResponse(
                 [
-                'message' => 'Invalid credentials',
-                'is_success' => false,
-                'status_code' => JsonResponse::HTTP_CREATED],
+                    'message' => 'Invalid credentials',
+                    'is_success' => false,
+                    'status_code' => JsonResponse::HTTP_UNAUTHORIZED],
                 JsonResponse::HTTP_UNAUTHORIZED
             );
         }
@@ -68,17 +69,17 @@ class UserController extends AbstractController
             'token' => $token,
             'user' => [
                 'id' => $user->getId(),
-                'name' => $user->getName(),
+                'fullname' => $user->getFullname(),
                 'email' => $user->getEmail(),
             ],
         ];
 
         return new JsonResponse(
             [
-            'message' => 'Login successful',
-            'is_success' => true,
-            'data' => $response,
-            'status_code' => JsonResponse::HTTP_OK],
+                'message' => 'Login successful',
+                'is_success' => true,
+                'data' => $response,
+                'status_code' => JsonResponse::HTTP_OK],
             JsonResponse::HTTP_OK
         );
     }
